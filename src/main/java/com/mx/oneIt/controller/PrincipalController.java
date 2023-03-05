@@ -48,7 +48,7 @@ public class PrincipalController extends BaseController {
 		return "Servicio Activo";
 	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.POST)
+	@RequestMapping(value="/loginPost", method = RequestMethod.POST)
 	public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
 		String password = encoder.encode(loginRequest.getPassword());
 		System.out.println(password);
@@ -56,9 +56,9 @@ public class PrincipalController extends BaseController {
 		return ResponseEntity.ok(password);
 	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public ResponseEntity<?> authenticateUserget(@RequestBody LoginRequest loginRequest) {
-		String password = encoder.encode(loginRequest.getPassword());
+	@RequestMapping(value="/loginGet", method = RequestMethod.GET)
+	public ResponseEntity<?> authenticateUserget() {
+		String password = encoder.encode("1234");
 		System.out.println(password);
 		
 		return ResponseEntity.ok(password);
