@@ -1,25 +1,15 @@
 package com.mx.oneIt.controller;
 
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mx.oneIt.api.repository.RoleRepository;
@@ -58,8 +48,16 @@ public class PrincipalController extends BaseController {
 		return "Servicio Activo";
 	}
 	
-	@PostMapping("/login")
+	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
+		String password = encoder.encode(loginRequest.getPassword());
+		System.out.println(password);
+		
+		return ResponseEntity.ok(password);
+	}
+	
+	@RequestMapping(value="/login", method = RequestMethod.GET)
+	public ResponseEntity<?> authenticateUserget(@RequestBody LoginRequest loginRequest) {
 		String password = encoder.encode(loginRequest.getPassword());
 		System.out.println(password);
 		
