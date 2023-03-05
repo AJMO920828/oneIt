@@ -64,20 +64,7 @@ public class PrincipalController extends BaseController {
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 		String password = encoder.encode(loginRequest.getPassword());
 		System.out.println(password);
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
-				);
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String jwt = jwtUtils.generateJwtToken(authentication);
 		
-		UserDetailsSegImpl userDetails = (UserDetailsSegImpl) authentication.getPrincipal();		
-		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
-		if (userDetails.getClave().equals("EST_US_A") || userDetails.getClave().equals("EST_US_N")) {
-			return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), roles,
-					userDetails.getClave(),jwtExpirationMs));
-		} else {
-			return new ResponseEntity<>( "Ocurrió un error al realizar la petición", HttpStatus.BAD_REQUEST);
-		}
-		
+		return ResponseEntity.ok(password);
 	}
 }
