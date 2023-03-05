@@ -25,10 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mx.oneIt.api.repository.RoleRepository;
 import com.mx.oneIt.api.repository.UserRepository;
 import com.mx.oneIt.controller.api.BaseController;
-import com.mx.oneIt.dto.JwtResponse;
 import com.mx.oneIt.dto.LoginRequest;
 import com.mx.oneIt.jwt.JwtUtils;
-import com.mx.oneIt.service.UserDetailsSegImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -60,8 +58,8 @@ public class PrincipalController extends BaseController {
 		return "Servicio Activo";
 	}
 	
-	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+	@PostMapping("/login")
+	public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
 		String password = encoder.encode(loginRequest.getPassword());
 		System.out.println(password);
 		
