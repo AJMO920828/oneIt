@@ -66,11 +66,11 @@ public class CursoImpartidoDao {
 	public List<CursoImpartidoDTO> obtenerCursososImpartidos() throws Exception {
 		String sql = " select \r\n" + "ci.id_curso_impartido, \r\n" + "ci.nombre, \r\n" + "ci.fecha_inicio, \r\n"
 				+ "ci.fecha_fin,\r\n"
-				+ "concat(p.nombre, ' ', p.primer_Apellido, ' ', ifnull(p.segundo_apellido,'')) instructor,\r\n"
+				+ "concat(p.nombre, ' ', p.primer_Apellido, ' ', ISNULL(p.segundo_apellido,'')) instructor,\r\n"
 				+ "(select count(*) from usuario_curso_impartido uci where uci.id_curso_impartido = ci.id_curso_impartido ) numAlumnos,\r\n"
 				+ "cd.descripcion as modalidad\r\n" + "from curso_impartido ci \r\n"
 				+ "join usuario u on ci.id_instructor = u.id_usuario \r\n"
-				+ "join persona p on p.id_persona = u.id_persona \r\n"
+				+ "join persona p on p.id_usuario = u.id_usuario \r\n"
 				+ "join cat_detalle cd on cd.id_cat_detalle = ci.id_modalidad order by p.fecha_alta desc  \r\n" + "";
 		;
 		List<CursoImpartidoDTO> proyectos = new ArrayList<CursoImpartidoDTO>();
