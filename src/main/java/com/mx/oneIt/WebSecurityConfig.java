@@ -15,13 +15,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.mx.oneIt.jwt.AuthEntryPointJwt;
 import com.mx.oneIt.jwt.AuthTokenFilter;
-import com.mx.oneIt.service.UserDetailsServiceImpl;
+import com.mx.oneIt.service.UserDetailsSegServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
-	UserDetailsServiceImpl userDetailsService;
+	UserDetailsSegServiceImpl userDetailsService;
 
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
@@ -54,6 +54,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests()
 			.antMatchers("/api/auth/**").permitAll()
+			.antMatchers("/api/auth/signin").permitAll()
+			.antMatchers("/api/email/**").permitAll()
 			.antMatchers("/api/web/**").permitAll()
 			.antMatchers("/api/principal/**").permitAll()
 			.antMatchers("/api/test/**").permitAll()

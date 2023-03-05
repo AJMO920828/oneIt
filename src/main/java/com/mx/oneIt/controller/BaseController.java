@@ -6,7 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.mx.oneIt.dto.GenericResponseDTO;
-import com.mx.oneIt.service.UserDetailsImpl;
+import com.mx.oneIt.service.UserDetailsSegImpl;
 
 public class BaseController {
 	
@@ -28,10 +28,10 @@ public class BaseController {
 	public static final String SUCCESS_MESSAGE = "sERVICIO EJECUTADO EXITOSAMENTE.";
 	
 
-	public UserDetailsImpl getUsuario() {
+	public UserDetailsSegImpl getUsuario() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		
-		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+		UserDetailsSegImpl userDetails = (UserDetailsSegImpl) authentication.getPrincipal();
 		
 		return userDetails;
 	}
@@ -40,7 +40,7 @@ public class BaseController {
 	public Long getIdUsuario() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		
-		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+		UserDetailsSegImpl userDetails = (UserDetailsSegImpl) authentication.getPrincipal();
 		
 		return userDetails.getId();
 	}
