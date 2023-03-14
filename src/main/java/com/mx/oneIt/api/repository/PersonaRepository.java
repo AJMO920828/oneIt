@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 import com.mx.oneIt.api.model.Persona;
 
 @Repository
-public interface PersonaRepository extends JpaRepository<Persona, Integer>{
+public interface PersonaRepository extends JpaRepository<Persona, Long>{
 	
 	Boolean existsByCorreo(String correo);
-	Optional<Persona> findByIdPersona(Integer idPersona);
+	Optional<Persona> findByIdPersona(Long idPersona);
 	
 	
 	

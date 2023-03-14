@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.mx.oneIt.api.dto.PersonaDTO;
+import com.mx.oneIt.api.dto.UsuarioDTO;
 import com.mx.oneIt.api.dto.request.ObjectRequest;
 import com.mx.oneIt.api.service.CatDetalleService;
 import com.mx.oneIt.api.service.UsuarioService;
@@ -37,10 +37,10 @@ public class UsuarioController extends BaseController{
 	
 	
 	@PostMapping("/obtenerUsuario")
-	public ResponseEntity<?> obtenerUsuario(@RequestBody PersonaDTO personaDTO) {
+	public ResponseEntity<?> obtenerUsuario(@RequestBody UsuarioDTO usuarioDto) {
 		try {
-			personaDTO = usaurioService.obtenerUsuario(personaDTO);
-            return ResponseEntity.ok(personaDTO);
+			usuarioDto = usaurioService.obtenerUsuario(usuarioDto.getIdUsuario());
+            return ResponseEntity.ok(usuarioDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>( "Ocurrió un error al realizar la petición", HttpStatus.BAD_REQUEST);
@@ -57,5 +57,26 @@ public class UsuarioController extends BaseController{
 			return new ResponseEntity<>( "Ocurrió un error al realizar la petición", HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@GetMapping("/obtenerRoles")
+	public ResponseEntity<?> obtenerRoles() {
+		try {
+            return ResponseEntity.ok(usaurioService.obtenerRoles());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>( "Ocurrió un error al realizar la petición", HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/obtenerEstatusUsuario")
+	public ResponseEntity<?> obtenerEstatusUsuario() {
+		try {
+            return ResponseEntity.ok(usaurioService.obtenerEstatusUsuario());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>( "Ocurrió un error al realizar la petición", HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 	
 }

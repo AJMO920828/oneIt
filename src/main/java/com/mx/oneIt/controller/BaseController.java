@@ -25,23 +25,19 @@ public class BaseController {
 	public static final int HTTP_APP_FAILURE = 409;
 	public static final int HTTP_APP_NOT_IMPL = 409;
 	
-	public static final String SUCCESS_MESSAGE = "sERVICIO EJECUTADO EXITOSAMENTE.";
+	public static final String SUCCESS_MESSAGE = "SERVICIO EJECUTADO EXITOSAMENTE.";
 	
 
 	public UserDetailsSegImpl getUsuario() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		
 		UserDetailsSegImpl userDetails = (UserDetailsSegImpl) authentication.getPrincipal();
-		
 		return userDetails;
 	}
 	
 	
 	public Long getIdUsuario() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		
 		UserDetailsSegImpl userDetails = (UserDetailsSegImpl) authentication.getPrincipal();
-		
 		return userDetails.getId();
 	}
 	

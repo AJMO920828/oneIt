@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.mx.oneIt.api.enums.EIndEstatus;
-import com.mx.oneIt.api.enums.EMaestroId;
+import com.mx.oneIt.api.enums.EMaestro;
 import com.mx.oneIt.api.service.CatDetalleService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -22,7 +22,8 @@ public class CatalogoDatosGeneralesController {
 	@GetMapping("/getCatModalidad")
 	public ResponseEntity<?> getCatTipoProyecto() {
 		try {
-			return ResponseEntity.ok(catDetalleService.findByCatDetalle(EMaestroId.MODALIDAD_CURSO.getIdMaestro(),EIndEstatus.ACTIVO.getIndEstatus()));
+			//catDetalleService.findByCatDetalle(EMaestro.MODALIDAD_CURSO.getIdMaestro(),EIndEstatus.ACTIVO.getIndEstatus())
+			return ResponseEntity.ok("");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>( "Ocurrió un error al realizar la petición", HttpStatus.BAD_REQUEST);

@@ -16,8 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.mx.oneIt.model.ERoleSeg;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,9 +40,6 @@ public class Rol implements Serializable {
 
     @Column(name = "clave")
     private String claveRol;
-    
-   /* @Column(name = "clave", insertable = false, updatable = false)
-    private ERoleSeg name;*/
     
     @Column(name = "fecha_alta")
     @Temporal(TemporalType.TIMESTAMP)

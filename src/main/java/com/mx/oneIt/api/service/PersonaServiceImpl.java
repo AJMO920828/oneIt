@@ -44,10 +44,6 @@ public class PersonaServiceImpl implements PersonaService{
 		return personaDto;
 	}
 	
-	@Transactional
-	public List<PersonaDTO> obtenerPersonaByClvRolAndIndEstatus(String clvRol,Integer estatus) throws Exception {
-		return personaDao.obtenerPersonaByClvRolAndIndEstatus(clvRol,estatus);
-	}
 	
 	@Transactional
 	public List<PersonaDTO> obtenerAlumnosAll(String clvRol,Integer estatus) throws Exception {

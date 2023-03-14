@@ -37,7 +37,7 @@ public class BaseEntity implements Serializable {
 	@CreatedBy
 	private Long usuarioAlta;
 	
-	@Column(name = "fecha_modificacion")
+	@Column(name = "usuario_modificacion")
 	@LastModifiedBy
 	private Long usuarioModificacion;
 	
